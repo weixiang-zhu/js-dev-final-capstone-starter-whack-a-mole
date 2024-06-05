@@ -264,12 +264,18 @@ function stopGame(){
 
 
 function playAudio(audioObject) {
-  audioObject.play();
+  let playPromise = audioObject.play();
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+    })
+        .catch(error => {
+        });
+  }
 }
 
-function loopAudio(audioObject) {
-  audioObject.loop = true;
-  playAudio(audioObject);
+function loopBGM() {
+  song.loop = true;
+  playAudio(song);
 }
 
 function stopAudio(audioObject) {
@@ -284,10 +290,10 @@ function stopAudio(audioObject) {
 *
 */
 function startGame(){
+  loopBGM();
   setDuration(10);
   clearScore();
   setEventListeners()
-  loopAudio(song);
   startTimer();
   showUp();
   return "game started";
