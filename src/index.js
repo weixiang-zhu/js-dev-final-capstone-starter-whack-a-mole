@@ -14,7 +14,9 @@ let lastHole = 0;
 let points = 0;
 let difficulty = "easy";
 
-
+/**
+ * Set the difficulty from difficulty select box
+ */
 function setDifficulty() {
   difficulty = difficultySelect.value;
 }
@@ -96,14 +98,6 @@ function chooseHole(holes) {
 * then it should call the `stopGame()` function. The function also needs to
 * return the timeoutId if the game continues or the string "game stopped"
 * if the game is over.
-*
-*  // if time > 0:
-*  //   timeoutId = showUp()
-*  //   return timeoutId
-*  // else
-*  //   gameStopped = stopGame()
-*  //   return gameStopped
-*
 */
 function gameOver() {
   if(time > 0){
@@ -262,7 +256,10 @@ function stopGame(){
 }
 
 
-
+/**
+ * Start playing audio from input parameter
+ * @param audioObject
+ */
 function playAudio(audioObject) {
   let playPromise = audioObject.play();
   if (playPromise !== undefined) {
@@ -273,11 +270,18 @@ function playAudio(audioObject) {
   }
 }
 
+/**
+ * Loop play background bgm "song"
+ */
 function loopBGM() {
   song.loop = true;
   playAudio(song);
 }
 
+/**
+ * Stop playing audio from input parameter
+ * @param audioObject
+ */
 function stopAudio(audioObject) {
   audioObject.pause();
 }
